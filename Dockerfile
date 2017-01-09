@@ -1,8 +1,9 @@
-FROM lsiobase/alpine:3.7
+FROM zimme/alpine
+LABEL maintainer="zimme"
 
 RUN \
- echo "**** install build packages ****" && \
- apk add --no-cache --virtual=build-dependencies \
+	echo "**** install build packages ****" && \
+	apk add --no-cache --virtual=build-dependencies \
 	autoconf \
 	automake \
 	freetype-dev \
@@ -20,8 +21,8 @@ RUN \
 	python2-dev \
 	tiff-dev \
 	zlib-dev && \
- echo "**** install runtime packages ****" && \
- apk add --no-cache \
+	echo "**** install runtime packages ****" && \
+	apk add --no-cache \
 	curl \
 	freetype \
 	git \
@@ -42,10 +43,10 @@ RUN \
 	wget \
 	xz \
 	zlib && \
- echo "**** install pip packages ****" && \
- pip install --no-cache-dir -U \
+	echo "**** install pip packages ****" && \
+	pip install --no-cache-dir -U \
 	pip && \
- pip install --no-cache-dir -U \
+	pip install --no-cache-dir -U \
 	cheetah \
 	configparser \
 	ndg-httpsclient \
@@ -58,9 +59,9 @@ RUN \
 	setuptools \
 	urllib3 \
 	virtualenv && \
- echo "**** clean up ****" && \
- apk del --purge \
+	echo "**** clean up ****" && \
+	apk del --purge \
 	build-dependencies && \
- rm -rf \
+	rm -rf \
 	/root/.cache \
 	/tmp/*
